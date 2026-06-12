@@ -1,0 +1,192 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "language_models": {
+    "openai_compatible": {},
+  },
+  "agent_ui_font_size": 17.0,
+  "buffer_line_height": {
+    "custom": 1.5,
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+    "selections_menu": false,
+  },
+  "vim_mode": true,
+  "search": {
+    "include_ignored": false,
+  },
+  "sticky_scroll": {
+    "enabled": false,
+  },
+  "edit_predictions": {
+    "provider": "zed",
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5",
+    },
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-6",
+    },
+  },
+  "show_edit_predictions": false,
+  "inlay_hints": {
+    "enabled": false,
+  },
+  "cursor_blink": false,
+  "relative_line_numbers": "enabled",
+  "tab_bar": {
+    "show": true,
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware",
+  },
+  "preview_tabs": {
+    "enabled": false,
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true,
+    },
+  },
+  "vim": {
+    "use_system_clipboard": "always",
+  },
+  "hide_mouse": "on_typing_and_movement",
+  "buffer_font_family": "Ubuntu Mono",
+  "base_keymap": "VSCode",
+  "icon_theme": "VSCode Icons for Zed (Dark)",
+  "ui_font_size": 17.0,
+  "buffer_font_size": 17.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Fleet Dark",
+  },
+  "format_on_save": "on",
+  "languages": {
+    "Rust": {
+      "formatter": "language_server", // Or "prettier" / "external" if preferred
+      "format_on_save": "on",
+    },
+    "JavaScript": {
+      "tab_size": 4,
+      "hard_tabs": false,
+      "formatter": "language_server", // or "none" to disable auto-formatting
+      "format_on_save": "on",
+      "prettier": { "allowed": false },
+    },
+    "JSON": {
+      "tab_size": 4,
+      "hard_tabs": false,
+      "formatter": "language_server",
+      "format_on_save": "on",
+    },
+    "YAML": {
+      "tab_size": 4,
+      "hard_tabs": false,
+      "formatter": "language_server",
+      "format_on_save": "on",
+    },
+    "PHP": {
+      "language_servers": ["intelephense", "!phpactor"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "bash",
+          "arguments": [
+            "-c",
+            "cat > /tmp/zed-php-cs && ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --using-cache=no --quiet /tmp/zed-php-cs && cat /tmp/zed-php-cs",
+          ],
+        },
+      },
+    },
+  },
+  "lsp": {
+    "rust-analyzer": {
+      // Use a specific rust-analyzer binary (e.g., to match project's rust-toolchain.toml)
+      "binary": {
+        "path": "/home/cries/.cargo/bin/rust-analyzer",
+        // Or on Linux/Windows: "/home/yourname/.cargo/bin/rust-analyzer"
+      },
+
+      // Use pre-release rust-analyzer (advanced/bleeding-edge)
+      "fetch": {
+        "pre_release": true,
+      },
+      // Pass initialization options to rust-analyzer (common customizations)
+      "initialization_options": {
+        "check": {
+          "command": "clippy", // Use Clippy for diagnostics instead of cargo check
+          "allTargets": false, // Useful for embedded/no_std projects
+        },
+        "cargo": {
+          "allTargets": false,
+          "target": "thumbv7em-none-eabihf", // Example for embedded targets
+        },
+        "rustfmt": {
+          "extraArgs": ["+nightly"], // Use nightly rustfmt if needed
+        },
+      },
+    },
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "parameterNames": true,
+        },
+      },
+    },
+    "intelephense": {
+      "settings": {
+        "diagnostics": {
+          "enable": true,
+          "undefinedMethods": false,
+          "undefinedFunctions": false,
+          "missingReturnType": false,
+          "missingDocblockReturn": false,
+          // Optional: Add more if you want finer control over other false positives
+          // "undefinedProperties": false,
+          // "undefinedTypes": false,
+          // "undefinedConstants": false,
+          // "undefinedClassConstants": false,
+          // Leave "undefinedVariables" omitted or true (recommended to keep variable checks active)
+        },
+      },
+    },
+  },
+}

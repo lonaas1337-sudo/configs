@@ -1,0 +1,101 @@
+set $mod Mod4
+
+set $term foot
+set $menu wofi --show drun
+set $browser firefox
+
+# Aggressive no-gap settings
+gaps inner 0
+gaps outer 0
+smart_gaps on
+default_border pixel 
+default_floating_border pixel 2
+hide_edge_borders both
+font pango:FiraCode 11
+
+output HDMI-A-1 {
+    transform 270
+    scale 1.0
+    position 0,0
+}
+
+output DP-1 {
+    scale 1.0
+    position 1440,200
+}
+
+output eDP-1 {
+    scale 1.75
+    position 5280,400
+}
+
+input * {
+    xkb_layout ch
+    xkb_variant fr
+}
+
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $browser
+bindsym $mod+space exec $menu
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaymsg exit
+bindsym $mod+Shift+a exec helvum
+bindsym $mod+Escape exec swaylock
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Control+Shift+Left move container left
+bindsym $mod+Control+Shift+Down move container down
+bindsym $mod+Control+Shift+Up move container up
+bindsym $mod+Control+Shift+Right move container right
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+bindsym Print exec grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot copied"
+bindsym Shift+Print exec grim ~/Pictures/screenshot-$(date +%F-%H%M%S).png && notify-send "Screenshot saved"
+
+# Wallpaper
+exec swaybg -i ~/.config/sway/wallpaper.jpg -m fill
+
+exec mako
+exec waybar
+
+include /etc/sway/config.d/*
