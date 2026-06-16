@@ -8,7 +8,7 @@ set $browser firefox
 gaps inner 0
 gaps outer 0
 smart_gaps on
-default_border pixel 
+default_border pixel
 default_floating_border pixel 2
 hide_edge_borders both
 font pango:FiraCode 11
@@ -45,6 +45,26 @@ bindsym $mod+Shift+a exec helvum
 bindsym $mod+Escape exec swaylock
 
 bindsym $mod+f fullscreen toggle
+
+# Resize Mode - Super + r then arrows
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    bindsym Left  resize shrink width 200px
+    bindsym Down  resize grow height 200px
+    bindsym Up    resize shrink height 200px
+    bindsym Right resize grow width 200px
+
+    bindsym Shift+Left  resize shrink width 400px
+    bindsym Shift+Down  resize grow height 400px
+    bindsym Shift+Up    resize shrink height 400px
+    bindsym Shift+Right resize grow width 400px
+
+    # Exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -94,6 +114,10 @@ bindsym Shift+Print exec grim ~/Pictures/screenshot-$(date +%F-%H%M%S).png && no
 
 # Wallpaper
 exec swaybg -i ~/.config/sway/wallpaper.jpg -m fill
+
+# Set headphones as default audio output
+exec wpctl set-default 64
+exec wpctl set-mute 64 0
 
 exec mako
 exec waybar
